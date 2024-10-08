@@ -13,7 +13,7 @@ function TodoForm() {
 
         if(!todo) return
 
-        addTodo({todo, completed: false})     //* not defining id: Date.now(),  here because it is allready defind in app.js- addTodo method & sending todo as todo not todo: todo because key value have same name
+        addTodo({todo, completed: false})     //* not defining `id: Date.now()`,  here because it is allready defind in `app.js`- addTodo method & sending `todo` as `todo` not `todo: todo` because key value have same name
 
         setTodo("")
     }
