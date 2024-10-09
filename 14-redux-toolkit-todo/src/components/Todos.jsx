@@ -1,6 +1,6 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import{removeTodo} from '../features/todo/todoSlice'
+import{removeTodo, isEditable} from '../features/todo/todoSlice'
 
 //~ 6 Use Redux State and Dispatch in Components - To access state and dispatch actions, use the useSelector and useDispatch hooks.
 const Todos = () => {
@@ -18,6 +18,7 @@ const Todos = () => {
             key={todo.id}
           >
             <div className='text-white'>{todo.text}</div>
+            <button className='text-2xl' onClick={() => dispatch(isEditable({id: todo.id, text: todo.text}))}>📝</button>
             <button
              onClick={() => dispatch(removeTodo(todo.id))}
               className="text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-md"
