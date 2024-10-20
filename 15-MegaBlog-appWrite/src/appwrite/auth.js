@@ -31,13 +31,15 @@ export class AuthService{
     constructor() {
         this.client.setEndpoint(conf.appWriteUrl)
         .setProject(conf.appWriteProjectId)
-
+        
         this.account = new Account(this.client)
+        console.log(this.account)
     }
 
-    async creatAccount({email, password, name}){        //* now this is a wrapper funciton account.create by doning this in future if we wnat to change accoutn creation process then we only have to change code inside it not the whole code 
+    async createAccount({email, password, name}){        //* now this is a wrapper funciton account.create by doning this in future if we wnat to change accoutn creation process then we only have to change code inside it not the whole code 
         try {
             const userAccount = await this.account.create(ID.unique(), email, password, name)
+            console.log(userAccount)
 
             if(userAccount){
                 // call another method -> if user accout is created so we also logging him
@@ -48,22 +50,31 @@ export class AuthService{
             }
 
         } catch (error) {
+            console.log("createAcount error");
+            
             throw error
         }
     }
 
     async login({email, password}){
         try {
+            
             return await this.account.createEmailPasswordSession(email, password)
         } catch (error) {
+            console.log("login error");
+
             throw error
         }
     }
 
-    async getCurrenUser(){
+    async getCurrentUser(){
         try {
+            
             return await this.account.get()
+            
         } catch (error) {
+            console.log("getCurrenUser error");
+
             throw error
         }
 
